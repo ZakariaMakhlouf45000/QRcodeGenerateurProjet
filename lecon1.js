@@ -18,15 +18,18 @@
 
 const conteneur = document.getElementById('zone-qrcode');
 const monBouton = document.getElementById('btn-magique');
-
 const monInput = document.getElementById('texte-utilisateur');
+
 
 monBouton.addEventListener('click', () => {
   const texteSaisi = monInput.value;
+
   QRCode.toDataURL(texteSaisi, (err, url) => {
     if (err) return;
 
-    console.log(url);
-    conteneur.innerHTML = `<img src="${url}">`;
+    conteneur.innerHTML = `
+      <img src="${url}" alt="QR Code">
+      <a href="${url}" download="qrcode.png" id="btn-telecharger">Télécharger le QR Code</a>
+    `;
   });
 });
